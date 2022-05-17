@@ -12,6 +12,8 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+
     </head>
 
     <body>
@@ -40,10 +42,9 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a style="font-size: 20px;">Amigos:</a> 
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <ul class="userFriendsList">
+                <li class="userFriendsItem"></li>
+            </ul>
         </div>
         <div id="main">
             <div>
@@ -141,6 +142,15 @@
     </body>
 
     <script>
+        let jsonUserFriends = '{"userFriends": ["Nicoly", "Alana"]}';
+        const c = (el) => document.querySelector(el);
+        const cs = (el) => document.querySelectorAll(el);
+
+        jsonUserFriends.map((item, index)=>{
+            let userFriendsItem = c(".userFriendsList .userFriendsItem").cloneNode(false);
+            document.querySelector(".userFriendsList").append(userFriendsItem);
+        });
+
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
@@ -150,7 +160,6 @@
             document.getElementById("mySidenav").style.width = "0";
             document.getElementById("main").style.marginLeft = "0";
         }
-
      
     </script>
 </html>
