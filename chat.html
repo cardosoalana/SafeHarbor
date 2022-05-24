@@ -21,27 +21,23 @@
 
     <body>
         <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div>
-                    <div class="col-3 navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>                        
-                        </button>
-    
-                        <a class="navbar-brand" href="#safeHarbor" style="color: black;">Safe Harbor</a>
-                    </div>
-                    <div class="col-9 collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li  onclick="openNav()"><a href="#chat">Chat</a></li>
-                            <li><a href="#profile">Perfil</a></li>
-                            <li><a href="#about">Login</a></li>
-    
-                        </ul>
-                    </div>
+            <div class="container" style="display:inline-block">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+
+                    <a class="navbar-brand" href="#safeHarbor" style="margin: 5px; font-size:20px" >Safe Harbor</a>
                 </div>
-                
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right" style="display:inline-block; margin-top: 5px;">
+                        <li  onclick="openNav()"><a href="#chat">Chat</a></li>
+                        <li><a href="#profile">Perfil</a></li>
+                        <li><a href="#about">Login</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
@@ -60,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="row send-message" style="display: flex;">
+            <div class="row send-message">
                 <div class="col-12 row" style="align-items: center;">
                     <div class="row">
                         <div class="col-11 message-wrapper">
@@ -77,18 +73,8 @@
 
     <script>
         let userFriends = ["Nicoly", "Alana", "Nathan", "Carlos"]; 
-        var i;
-        for (i = 0; i < userFriends.length; i++ ) {
-
-            var newLI = document.createElement("li"),
-                displayUserFriendsList = document.getElementById("userFriendsList"), 
-                newContent = document.createTextNode(userFriends[i]);
-                newLI.appendChild(newContent);
-                displayUserFriendsList.appendChild(newLI);
-                console.log(userFriends[i]);  
-        }
-
-        let text = '{ "userFriend": "Nicoly",' +
+    
+        let text ='{ "userFriend": "Nicoly",' +
             ' "userFriendProfession": "Psicóloga", ' +
             ' "messages" : [' +
             '{ "username": "Alana",' +
@@ -110,23 +96,21 @@
             ' "description": "Oi! Tudo bem? blá blá blá",' +
             ' "isUserMessage": true}]}';
 
-        let userChat = [
-            {
-                "username": "Alana", 
-                "usernameFriend": "Nicoly", 
-                "userFriendProfession": "Psicóloga",
-                "date": "17/05/22 - 22:10", 
-                "description": "Oi! Tudo bem? blá blá blá",
-                "isUserMessage": true
-            },
-            {
-                "username": "Alana", 
-                "usernameFriend": "Nicoly", 
-                "date": "17/05/22 - 22:10", 
-                "description": "Oi! Tudo bem? blá blá blá",
-                "isUserMessage": false
-            }
-        ]
+        let userMessage = [text, text1, text2, text3];
+
+        var i;
+        for (i = 0; i < userFriends.length; i++ ) {
+            var newLI = document.createElement("li"),
+                displayUserFriendsList = document.getElementById("userFriendsList"), 
+                newContent = document.createTextNode(userFriends[i]);
+                newLI.appendChild(newContent);
+                displayUserFriendsList.appendChild(newLI);
+                console.log(userFriends[i]);  
+
+                newLI.onclick = function(){
+                    alert()
+                };
+        }
 
         const obj = JSON.parse(text);
         console.log(obj);
@@ -138,14 +122,11 @@
         var htmlDescription = "";
 
         for (let message of obj.messages){
-
             htmlDescription += `<div class="chat" id=""><img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">`;
             htmlDescription += `<p id="description">${message.description}</p><span class="time-right">11:00</span></div>`;
         };
 
         $("#container-description").append(htmlDescription);
-
-        console.log(userChat);
 
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
